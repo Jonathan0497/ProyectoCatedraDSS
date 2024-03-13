@@ -16,7 +16,7 @@ class Database
     {
         // Credenciales para establecer la conexión con la base de datos.
         $server = 'localhost';
-        $database = 'usuarios';
+        $database = 'pingpong';
         $username = 'root'; // Ajusta al usuario de tu base de datos MySQL
         $password = ''; // Ajusta a la contraseña de tu base de datos MySQL
 
