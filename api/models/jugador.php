@@ -146,14 +146,14 @@ class Jugador extends Validator
 
     public function readAll()
     {
-        $sql = 'SELECT id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero FROM pingpong';
+        $sql = 'SELECT id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero FROM jugador';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero FROM pingpong
+        $sql = 'SELECT id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero FROM jugador
                 WHERE id_jugador = ?';
         $params = array($this->id_jugador);
         return Database::getRow($sql, $params);
