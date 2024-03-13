@@ -10,6 +10,7 @@ class Torneo extends Validator
     private $nombres = null;
     private $direccion = null;
     private $oblNivelHabilidad = null;
+    private $idNivelHabilidad = null;
     private $maxJugadores = null;
     private $fechaInicio = null;
     private $idEstadoTorneo = null;
@@ -121,6 +122,16 @@ class Torneo extends Validator
         }
     }
 
+    public function setIdNivelHabilidad($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idNivelHabilidad = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /*
     *   Métodos para obtener valores de los atributos.
@@ -176,6 +187,11 @@ class Torneo extends Validator
         return $this->direccion;
     }
 
+    public function getIdNivelHabilidad()
+    {
+        return $this->idNivelHabilidad;
+    }
+
     public function searchRows($value)
     {
         $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
@@ -188,15 +204,15 @@ class Torneo extends Validator
 
     public function createRow()
     {
-        $sql = 'INSERT INTO torneo(nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio)
+        $sql = 'INSERT INTO torneo(nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio);
+        $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio
+        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad
                 FROM torneo';
         $params = null;
         return Database::getRows($sql, $params);
@@ -204,7 +220,7 @@ class Torneo extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio
+        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad
                 FROM torneo
                 WHERE id_torneo = ?';
         $params = array($this->id);
@@ -214,9 +230,9 @@ class Torneo extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE torneo 
-                SET nombre_torneo = ?, direccion = ?, maxJugadores = ?, obl_nivelHabilidad = ?, id_estadoTorneo = ?, id_tipoTorneo = ?, id_usuario = ?, id_formatoPartido = ?, fechaInicio = ?
+                SET nombre_torneo = ?, direccion = ?, maxJugadores = ?, obl_nivelHabilidad = ?, id_estadoTorneo = ?, id_tipoTorneo = ?, id_usuario = ?, id_formatoPartido = ?, fechaInicio = ?, id_nivelHabilidad = ?
                 WHERE id_torneo = ?';
-        $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->id);
+        $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad, $this->id);
         return Database::executeRow($sql, $params);
     }
 

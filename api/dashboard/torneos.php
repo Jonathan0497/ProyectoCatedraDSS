@@ -42,6 +42,8 @@ if (isset($_GET['action'])) {
                 if (!$torneo->setNombres($_POST['nombres'])) {
                     $result['exception'] = 'Nombres incorrectos';
                 } elseif (!$torneo->setOblNivelHabilidad($_POST['nivelHabilidad'])) {
+                    $result['exception'] = 'Nivel de Habilidad obligatorio incorrecto';
+                } elseif (!$torneo->setIdNivelHabilidad($_POST['idNivelHabilidad'])) {
                     $result['exception'] = 'Nivel de Habilidad incorrecto';
                 } elseif (!$torneo->setMaxJugadores($_POST['maxJugadores'])) {
                     $result['exception'] = 'Maximo de Jugadores incorrecto';
@@ -51,8 +53,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Estado de torneo incorrecto';
                 } elseif (!$torneo->setIdTipoTorneo($_POST['tipoTorneo'])) {
                     $result['exception'] = 'Tipo de torneo incorrecto';
-                } elseif (!$torneo->setIdUsuario($_POST['idUsuario'])) {
-                    $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$torneo->setIdFormatoPartido($_POST['formatoPartido'])) {
                     $result['exception'] = 'Formato partido incorrecto';
                 } elseif (!$torneo->setDireccion($_POST['direccion'])) {
