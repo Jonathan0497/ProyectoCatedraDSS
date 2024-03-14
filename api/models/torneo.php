@@ -205,7 +205,7 @@ class Torneo extends Validator
     public function createRow()
     {
         $sql = 'INSERT INTO torneo(nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad);
         return Database::executeRow($sql, $params);
     }

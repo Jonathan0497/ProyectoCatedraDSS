@@ -53,6 +53,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Estado de torneo incorrecto';
                 } elseif (!$torneo->setIdTipoTorneo($_POST['tipoTorneo'])) {
                     $result['exception'] = 'Tipo de torneo incorrecto';
+                } elseif (!$torneo->setIdUsuario($_POST['idUsuario'])) {
+                    $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$torneo->setIdFormatoPartido($_POST['formatoPartido'])) {
                     $result['exception'] = 'Formato partido incorrecto';
                 } elseif (!$torneo->setDireccion($_POST['direccion'])) {
@@ -76,7 +78,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'update':
-                $_POST = $usuario->validateForm($_POST);
+                $_POST = $torneo->validateForm($_POST);
                 if (!$torneo->setId($_POST['id'])) {
                     $result['exception'] = 'Torneo incorrecto';
                 } elseif (!$torneo->readOne()) {
