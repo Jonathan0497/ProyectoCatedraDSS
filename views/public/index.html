@@ -1,39 +1,276 @@
 <!DOCTYPE html>
-<!-- Declaración del idioma para el documento -->
 <html lang="es">
-
 <head>
-    <!-- Codificación de caracteres para el documento -->
-    <meta charset="utf-8">
-    <!-- Título del documento -->
-    <title>PingPong - Creador de torneos</title>
-    <!-- Optimización de la página web para dispositivos móviles -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Llamada de archivo como icono -->
-    <link type="image/png" rel="icon" href="../../resources/img/icon.png">
-    <!-- Importación de archivos CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../../resources/css/public.css">
+    <title>Ping Pong - Torneos</title>
     <link rel="stylesheet" href="../../resources/css/index.css">
+    <link href="../../resources/css/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    margin: 10px;
+    padding: 0 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 2em;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a {
+    position: relative; 
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px; 
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transform: scaleX(0); 
+    transform-origin: left; 
+    transition: transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: transparent; 
+    color: #ffffff; 
+}
+
+nav a:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+
+nav ul li a:hover::after {
+    transform: scaleX(1); 
+}
+
+
+.banner {
+    background-image: url("../../resources/img/pingpong.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.contenido {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.contenido h2 {
+    margin-top: 0;
+}
+
+button {
+    background-color: #f44336; 
+    color: white;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer; 
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 26px 0; 
+    font-size: 1.2em; 
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1em; 
+}
+
+.card-img-custom {
+    height: 300px; 
+    object-fit: cover; 
+}
+
+p {
+    margin: 0; 
+    text-align: justify;
+    padding: 1em 0;
+}
+
+.centrar {
+    text-align: center;
+}
+
+.fa-brands { 
+    margin-right: 0.5em; 
+}
+
+.espacio {
+    margin-left: 0.5em; 
+}
+
+.titulo {
+    margin: 10px;
+    padding: 0 20px;
+    font-size: 3rem;
+}
+    </style>
 </head>
-
 <body>
-    <!-- Encabezado del documento -->
-    <header></header>
-    <!-- Contenido principal del documento -->
-    <div class="container">
-        <!-- Título del contenido principal -->
-        <h4 class="center indigo-text" id="title">Mejores jugadores de Ping Pong</h4>
-        <div id="jugadores-container" class="salon-fama"></div>
-    </div>
-    <!-- Pie del documento -->
-    <footer class="page-footer green"></footer>
-    <!-- Importación de archivos JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript" src="../../controllers/components.js"></script>
-    <script type="text/javascript" src="../../controllers/public/jugadores.js"></script>
-</body>
 
+    <header>
+        <nav>
+            <a class="titulo" href="index.html">Ping Pong<i class="fa-solid fa-table-tennis espacio"></i></a>
+            <ul>
+                <li><a href="torneo.html">Torneos</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Reglas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <div class="contenido">
+            <h2>Bienvenido al Mundo del Ping Pong</h2>
+            <p class="centrar">Encuentra información sobre torneos, noticias y mucho más.</p>
+            <a href="https://as.com/noticias/tenis-mesa/">
+            <button>¡Comienza ahora!</button>
+        </a>
+        </div>
+    </section>
+
+    <br>
+    <h1 class="text-center">Mejores Jugadores de Ping Pong</h1>
+    <br>
+    <div class="container-fluid">
+        <div class="row d-flex align-items-stretch">
+            <div class="col-md-2 offset-md-1">
+                <div class="card" style="width: 100%; height: 100%;">
+                    <img src="../../resources/img/jugadores/MaLong.jpg" class="card-img-top card-img-custom" alt="Ma Long">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">Ma Long</h5>
+                        <p class="card-text flex-grow-1 justified-text">
+                            Ma Long es el actual campeón olímpico y mundial de tenis de mesa de China. Ha sido el número
+                            uno del mundo durante 64 meses, logrando 35 sets consecutivos y ganando 5 torneos del ITTF
+                            seguidos. Ha acumulado 28 títulos del ITTF World Tour y es conocido como "El dragón que lo
+                            destruye todo a su paso" debido a su potente ataque con la mano derecha.
+                        </p>
+                        <a href="https://es.wikipedia.org/wiki/Ma_Long" class="btn btn-primary">Mas Información</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="width: 100%; height: 100%;">
+                    <img src="../../resources/img/jugadores/Jan-Ove Waldner.jpg" class="card-img-top card-img-custom" alt="Jan-Ove Waldner">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">Jan-Ove Waldner</h5>
+                        <p class="card-text flex-grow-1 justified-text">
+                            Jan-Ove Waldner es un jugador sueco de tenis de mesa conocido como el "Mozart del tenis de
+                            mesa" y "Läo Wä" en China debido a su longevidad en el deporte a los 55 años. Destaca por su
+                            elegancia, realiza técnicas complejas con calma y su lenguaje corporal desconcierta a sus
+                            oponentes. Se le compara con Roger Federer en el tenis por su estilo.
+                        </p>
+                        <a href="https://es.wikipedia.org/wiki/Jan-Ove_Waldner" class="btn btn-primary">Mas
+                            Información</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="width: 100%; height: 100%;">
+                    <img src="../../resources/img/jugadores/HugoCalderano.jpg" class="card-img-top card-img-custom" alt="Hugo Calderano">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">Hugo Calderano</h5>
+                        <p class="card-text flex-grow-1 justified-text">
+                            El brasileño Hugo Calderano, considerado el mejor jugador de tenis de mesa de América, es el
+                            favorito de Occidente para las promesas del deporte. En 2018, ganó bronce en el ITTF World
+                            Tour Gran Finals, compitiendo contra principalmente asiáticos. Destacan sus victorias sobre
+                            el número uno chino, Fan Zhendong, y su habilidad con el backhand ante Tomokazu Harimoto.
+                        </p>
+                        <a href="https://es.wikipedia.org/wiki/Hugo_Calderano" class="btn btn-primary">Mas
+                            Información</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="width: 100%; height: 100%;">
+                    <img src="../../resources/img/jugadores/Liu Guoliang.jpeg" class="card-img-top card-img-custom" alt="Liu Guoliang">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">Liu Guoliang</h5>
+                        <p class="card-text flex-grow-1 justified-text">
+                            Liu Guoliang, un año menor que Kong Linghui, logró el Grand Slam en tenis de mesa. Su estilo
+                            penholder y ataques directos lo destacaron. Actualmente, es considerado el mejor entrenador
+                            de tenis de mesa del mundo debido a su pasión y conocimientos. Además, es reconocido por su
+                            distintivo servicio en el deporte.
+                        </p>
+                        <a href="https://es.wikipedia.org/wiki/Liu_Guoliang" class="btn btn-primary">Mas Información</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="width: 100%; height: 100%;">
+                    <img src="../../resources/img/jugadores/Kong Linghui.jpg" class="card-img-top card-img-custom" alt="Kong Linghui">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">Kong Linghui</h5>
+                        <p class="card-text flex-grow-1 justified-text">
+                            Kong Linghui, nacido en 1975, logró un Grand Slam en tenis de mesa al ganar medallas de oro
+                            y plata en los Juegos Olímpicos. Fue considerado uno de los jugadores más completos, aunque
+                            algunos lo apodaban "Jack of all trades, master of none". Su conocimiento influyó en
+                            jugadores chinos que estudiaron su técnica en Suecia.
+                        </p>
+                        <a href="https://es.wikipedia.org/wiki/Kong_Linghui" class="btn btn-primary">Mas Información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <a href="#" target="_blank"><i class="fa-brands fa-trello"></i> Trello</a>
+        <a href="#" target="_blank"><i class="fa-brands fa-github"></i> Github</a>
+        <a href="#">Contáctanos</a>
+        <h2>Derechos reservados © 2023 Ping Pong</h2>
+    </footer>
+
+    
+</body>
 </html>
