@@ -138,7 +138,7 @@ class Jugador extends Validator
 
     public function createRow()
     {
-        $sql = 'INSERT INTO jugadores(id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero)
+        $sql = 'INSERT INTO jugador(id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->id_jugador, $this->nombre_jugador, $this->edad, $this->telefono, $this->correo, $this->id_nivelHabilidad, $this->id_genero);
         return Database::executeRow($sql, $params);
@@ -146,7 +146,24 @@ class Jugador extends Validator
 
     public function readAll()
     {
-        $sql = 'SELECT id_jugador, nombre_jugador, edad, telefono, correo, id_nivelHabilidad, id_genero FROM jugador';
+        $sql = 'SELECT id_jugador, nombre_jugador, edad, telefono, correo, nivelhabilidad.nivelHabilidad, genero.genero
+        FROM jugador
+        INNER JOIN nivelhabilidad ON jugador.id_nivelHabilidad = nivelhabilidad.id_nivelHabilidad
+        INNER JOIN genero ON jugador.id_genero = genero.id_genero';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllNivelHabilidad()
+    {
+        $sql = 'SELECT id_nivelHabilidad, nivelHabilidad FROM nivelhabilidad';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllGenero()
+    {
+        $sql = 'SELECT id_genero, genero FROM genero';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -176,4 +193,3 @@ class Jugador extends Validator
         return Database::executeRow($sql, $params);
     }
 }
-?>
