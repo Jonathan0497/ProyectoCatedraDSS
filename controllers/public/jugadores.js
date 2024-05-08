@@ -32,6 +32,52 @@ function editarJugador(jugadorId) {
     });
 }
 
+function eliminarJugador(jugadorId) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const formData = new FormData();
+            formData.append('id', jugadorId); // Asegúrate de enviar el ID
+
+            fetch(API_JUGADORES + 'delete', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 1) {
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'Jugador eliminado correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    listarJugadores(); // Actualizar la lista de jugadores
+                } else {
+                    throw new Error('Error al eliminar el jugador: ' + data.exception);
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo eliminar el jugador: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+        }
+    });
+
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     listarJugadores();
@@ -73,7 +119,7 @@ function listarJugadores() {
                         <button class="btn btn-warning btn-sm" id="edit-${jugador.id_jugador}">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarJugador(${jugador.id_jugador})">
+                        <button class="btn btn-danger btn-sm" id="delete-${jugador.id_jugador}">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>
@@ -84,6 +130,9 @@ function listarJugadores() {
         data.dataset.forEach(jugador => {
             document.getElementById(`edit-${jugador.id_jugador}`).addEventListener('click', function() {
                 editarJugador(jugador.id_jugador);
+            });
+            document.getElementById(`delete-${jugador.id_jugador}`).addEventListener('click', function() {
+                eliminarJugador(jugador.id_jugador);
             });
         });
     });
@@ -98,20 +147,32 @@ function crearJugador() {
         method: 'POST',
         body: formData
     })
-        .then(response => response.json())
-        .then(result => {
-            if (result.status === 1) {
-                alert('Jugador creado correctamente!');
-                listarJugadores(); // Actualizar la lista de jugadores
-            } else {
-                throw new Error(result.exception); // Manejar errores específicos de la API
-            }
-        })
-        .catch(error => {
-            alert('Error al crear el jugador: ' + error.message);
-            console.error(error);
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === 1) {
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'Jugador creado correctamente!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            document.getElementById('save-form').reset();
+            listarJugadores(); // Actualizar la lista de jugadores
+        } else {
+            throw new Error(result.exception); // Manejar errores específicos de la API
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            title: 'Error',
+            text: 'Error al crear el jugador: ' + error.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
         });
+        console.error('Error en fetch:', error);
+    });
 }
+
 
 // Función para actualizar un jugador
 function actualizarJugador(jugadorId) {
@@ -131,6 +192,7 @@ function actualizarJugador(jugadorId) {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
+                document.getElementById('save-form').reset(); // Limpiar el formulario
                 listarJugadores(); // Actualizar la lista de jugadores
             } else {
                 throw new Error(result.exception); // Manejar errores específicos de la API
