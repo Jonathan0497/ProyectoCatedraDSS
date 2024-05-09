@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping Pong - Jugadores</title>
+    <title>Ping Pong - Torneos</title>
     <link href="../../resources/css/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="module" src="../../controllers/public/jugadores.js"></script>
+<script type="module" src="../../controllers/public/torneos.js"></script>
 <body>
     <header>
         <nav>
             <a class="titulo" href="index.html">Ping Pong<i class="fa-solid fa-table-tennis espacio"></i></a>
             <ul>
+                <li><a href="torneos.html">Torneos</a></li>
                 <li><a href="jugadores.html">Jugadores</a></li>
-                <li><a href="torneo.html">Torneos</a></li>
                 <li><a href="#">Noticias</a></li>
                 <li><a href="#">Reglas</a></li>
                 <li><a href="#">Contacto</a></li>
@@ -25,58 +25,64 @@
     </header>
     
     <div class="container mt-4">
-        <h1>Agregar Nuevo Jugador</h1>
+        <h1>Agregar Nuevo Torneo</h1>
         <form id="save-form" method="post" enctype="multipart/form-data">
             <input type="hidden" id="id" name="id">
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre del Jugador</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                <label for="nombre_torneo" class="form-label">Nombre del Torneo</label>
+                <input type="text" class="form-control" id="nombre_torneo" name="nombre_torneo" required>
             </div>
             <div class="mb-3">
-                <label for="edad" class="form-label">Edad</label>
-                <input type="number" class="form-control" id="edad" name="edad" required>
-            </div>
-            <div class="mb-3">
-                <label for="telefono" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telefono" name="telefono" required>
-            </div>
-            <div class="mb-3">
-                <label for="correo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" name="correo" required>
-            </div>
-            <div class="mb-3">
-                <label for="nivelHabilidad" class="form-label">Nivel de Habilidad</label>
-                <select class="form-select" id="nivelHabilidad" name="nivelHabilidad" required>
+                <label for="idNivelHabilidad" class="form-label">Nivel de Habilidad</label>
+                <select class="form-select" id="idNivelHabilidad" name="idNivelHabilidad" required>
                     <!-- Estos campos se cargarán desde la BD -->
                 </select>
             </div>
             <div class="mb-3">
-                <label for="genero" class="form-label">Género</label>
-                <select class="form-select" id="genero" name="genero" required>
+                <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+            </div>
+            <div class="mb-3">
+                <label for="idTipoTorneo" class="form-label">Tipo de Torneo</label>
+                <select class="form-select" id="idTipoTorneo" name="idTipoTorneo" required>
                     <!-- Estos campos se cargarán desde la BD -->
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="idEstadoTorneo" class="form-label">Estado del Torneo</label>
+                <select class="form-select" id="idEstadoTorneo" name="idEstadoTorneo" required>
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="idFormatoPartido" class="form-label">Formato Partido</label>
+                <select class="form-select" id="idFormatoPartido" name="idFormatoPartido" required>
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
 
         <hr>
 
-        <h1>Listado de Jugadores</h1>
+        <h1>Listado de Torneos</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Género</th>
-                    <th>Teléfono</th>
-                    <th>Edad</th>
-                    <th>Correo Electrónico</th>
-                    <th>Nivel de Habilidad</th>          
+                    <th>Tipo</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Estado</th>
                     <th>Acciones</th>   
                 </tr>
             </thead>
-            <tbody id="tabla-jugadores">
-                <!-- Aquí se agregarán dinámicamente los jugadores -->
+            <tbody id="tabla-torneos">
+                <!-- Aquí se agregarán dinámicamente los torneos -->
             </tbody>
         </table>
     </div>

@@ -1,22 +1,21 @@
 <?php
 /*
-*	Clase para manejar la tabla usuarios de la base de datos.
+*   Clase para manejar la tabla torneo de la base de datos.
 *   Es clase hija de Validator.
 */
 class Torneo extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
-    private $nombres = null;
+    private $nombre_torneo = null;
     private $direccion = null;
-    private $oblNivelHabilidad = null;
-    private $idNivelHabilidad = null;
     private $maxJugadores = null;
     private $fechaInicio = null;
     private $idEstadoTorneo = null;
     private $idTipoTorneo = null;
     private $idUsuario = null;
     private $idFormatoPartido = null;
+    private $idNivelHabilidad = null;  // Asegúrate de que este campo pueda ser opcional
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -31,21 +30,10 @@ class Torneo extends Validator
         }
     }
 
-    public function setNombres($value)
+    public function setNombreTorneo($value)
     {
         if ($this->validateAlphabetic($value, 1, 50)) {
-            $this->nombres = $value;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    public function setOblNivelHabilidad($value)
-    {
-        if ($this->validateBoolean($value)) {
-            $this->oblNivelHabilidad = $value;
+            $this->nombre_torneo = $value;
             return true;
         } else {
             return false;
@@ -54,7 +42,7 @@ class Torneo extends Validator
 
     public function setMaxJugadores($value)
     {
-        if ($this->validateBoolean($value)) {
+        if ($this->validateNaturalNumber($value)) {
             $this->maxJugadores = $value;
             return true;
         } else {
@@ -132,7 +120,6 @@ class Torneo extends Validator
         }
     }
 
-
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -141,15 +128,9 @@ class Torneo extends Validator
         return $this->id;
     }
 
-    public function getNombres()
+    public function getNombreTorneo()
     {
-        return $this->nombres;
-    }
-
-
-    public function getOblNivelHabilidad()
-    {
-        return $this->oblNivelHabilidad;
+        return $this->nombre_torneo;
     }
 
     public function getMaxJugadores()
@@ -191,7 +172,6 @@ class Torneo extends Validator
     {
         return $this->idNivelHabilidad;
     }
-
     public function searchRows($value)
     {
         $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
@@ -204,37 +184,75 @@ class Torneo extends Validator
 
     public function createRow()
     {
-        $sql = 'INSERT INTO torneo(nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad);
+        $sql = 'INSERT INTO torneo (nombre_torneo, direccion, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_torneo, $this->direccion, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad);
         return Database::executeRow($sql, $params);
     }
 
+
     public function readAll()
     {
-        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad
-                FROM torneo';
+        $sql = 'SELECT t.id_torneo, t.nombre_torneo, t.direccion, t.maxjugadores, t.fechaInicio, nh.nivelHabilidad AS NivelHabilidad, fp.descripcion AS FormatoPartido, et.estadoTorneo AS EstadoTorneo
+            FROM torneo t
+            INNER JOIN formatopartido fp ON t.id_formatoPartido = fp.id_formatoPartido
+            LEFT JOIN nivelhabilidad nh ON t.id_nivelHabilidad = nh.id_nivelHabilidad
+            INNER JOIN estadotorneo et ON t.id_estadoTorneo = et.id_estadoTorneo';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
+    public function readNivelHabilidad()
+    {
+        $sql = 'SELECT id_nivelHabilidad, nivelHabilidad
+            FROM nivelhabilidad';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readFormatoPartido()
+    {
+        $sql = 'SELECT id_formatoPartido, descripcion
+            FROM formatopartido';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readEstadoTorneo()
+    {
+        $sql = 'SELECT id_estadoTorneo, estadoTorneo
+            FROM estadotorneo';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readTipoTorneo()
+    {
+        $sql = 'SELECT id_tipoTorneo, tipotorneo FROM tipotorneo';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+
     public function readOne()
     {
-        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, obl_nivelHabilidad, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad
-                FROM torneo
-                WHERE id_torneo = ?';
+        $sql = 'SELECT id_torneo, nombre_torneo, direccion, maxJugadores, id_estadoTorneo, id_tipoTorneo, id_usuario, id_formatoPartido, fechaInicio, id_nivelHabilidad
+            FROM torneo
+            WHERE id_torneo = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
+
     public function updateRow()
     {
-        $sql = 'UPDATE torneo 
-                SET nombre_torneo = ?, direccion = ?, maxJugadores = ?, obl_nivelHabilidad = ?, id_estadoTorneo = ?, id_tipoTorneo = ?, id_usuario = ?, id_formatoPartido = ?, fechaInicio = ?, id_nivelHabilidad = ?
-                WHERE id_torneo = ?';
-        $params = array($this->nombres, $this->direccion, $this->maxJugadores, $this->oblNivelHabilidad, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad, $this->id);
+        $sql = 'UPDATE torneo
+            SET nombre_torneo = ?, direccion = ?, id_estadoTorneo = ?, id_tipoTorneo = ?, id_usuario = ?, id_formatoPartido = ?, fechaInicio = ?, id_nivelHabilidad = ?
+            WHERE id_torneo = ?';
+        $params = array($this->nombre_torneo, $this->direccion, $this->idEstadoTorneo, $this->idTipoTorneo, $this->idUsuario, $this->idFormatoPartido, $this->fechaInicio, $this->idNivelHabilidad, $this->id);
         return Database::executeRow($sql, $params);
     }
+
 
     public function deleteRow()
     {
@@ -244,4 +262,3 @@ class Torneo extends Validator
         return Database::executeRow($sql, $params);
     }
 }
-?>
