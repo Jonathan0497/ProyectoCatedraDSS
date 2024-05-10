@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const form = document.getElementById('save-form');
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Previene el envío tradicional del formulario
+        event.preventDefault(); 
         const torneoId = document.getElementById('id').value;
         if (torneoId) {
             actualizarTorneo(torneoId);
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function editarTorneo(torneoId) {
     const formData = new FormData();
-    formData.append('id', torneoId); // Asegúrate de enviar el ID
+    formData.append('id', torneoId);
 
     fetch(API_TORNEO + 'readOne&id=' + torneoId, {
         method: 'POST',
@@ -44,7 +44,7 @@ function editarTorneo(torneoId) {
             if (data.status === 1 && data.dataset) {
                 document.getElementById('id').value = data.dataset.id_torneo;
                 document.getElementById('nombre_torneo').value = data.dataset.nombre_torneo;
-                document.getElementById('idNivelHabilidad').value = data.dataset.id_nivelHabilidad; // Asegúrate de que los IDs coincidan
+                document.getElementById('idNivelHabilidad').value = data.dataset.id_nivelHabilidad;
                 document.getElementById('fechaInicio').value = data.dataset.fechaInicio;
                 document.getElementById('idTipoTorneo').value = data.dataset.id_tipoTorneo;
                 document.getElementById('idEstadoTorneo').value = data.dataset.id_estadoTorneo;
@@ -73,7 +73,7 @@ function eliminarTorneo(torneoId) {
     }).then((result) => {
         if (result.isConfirmed) {
             const formData = new FormData();
-            formData.append('id', torneoId); // Asegúrate de enviar el ID
+            formData.append('id', torneoId);
 
             fetch(API_TORNEO + 'delete', {
                 method: 'POST',
@@ -264,7 +264,7 @@ function crearTorneo() {
 // Función para actualizar un jugador
 function actualizarTorneo(torneoId) {
     const formData = new FormData(document.getElementById('save-form'));
-    formData.append('id', torneoId); // Asegúrate de enviar el ID
+    formData.append('id', torneoId); 
 
     fetch(API_TORNEO + 'update', {
         method: 'POST',
@@ -279,10 +279,10 @@ function actualizarTorneo(torneoId) {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
-                document.getElementById('save-form').reset(); // Limpiar el formulario
-                listarJugadores(); // Actualizar la lista de jugadores
+                document.getElementById('save-form').reset(); 
+                listarJugadores(); 
             } else {
-                throw new Error(result.exception); // Manejar errores específicos de la API
+                throw new Error(result.exception); 
             }
         })
         .catch(error => {
@@ -396,7 +396,7 @@ function desinscribirJugador(idJugador, idTorneo) {
 function openModal() {
     const modal = document.getElementById('optionsModal');
     if (modal) {
-        modal.style.display = 'block'; // Mostrar el modal
+        modal.style.display = 'block';
         modal.classList.add('show');
     } else {
         console.error('Modal element not found');
@@ -405,6 +405,6 @@ function openModal() {
 
 function closeModal() {
     const modal = document.getElementById('optionsModal');
-    modal.style.display = 'none'; // Ocultar el modal
+    modal.style.display = 'none'; 
     modal.classList.remove('show');
 }
