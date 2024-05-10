@@ -12,6 +12,10 @@ header {
     align-items: center;
 }
 
+nav {
+    width: 100%; /* Asegúrate de que el nav ocupa todo el ancho del header */
+}
+
 nav h1 {
     margin: 10px;
     padding: 0 20px;
@@ -22,6 +26,8 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center; /* Alinea los elementos del menú verticalmente */
+    width: 100%; /* Ocupa todo el ancho disponible */
 }
 
 nav li {
@@ -67,7 +73,7 @@ nav ul li a:hover::after {
 
 
 .banner {
-    background-image: url("../img/pingpong.jpg");
+    background-image: url("../../resources/img/pingpong.jpg");
     background-size: cover;
     background-position: center;
     height: 100vh; 
@@ -139,4 +145,22 @@ p {
     margin: 10px;
     padding: 0 20px;
     font-size: 3rem;
+}
+nav li.logout-button {
+    margin-left: 60%; /* Empuja el botón de logout a la derecha */
+    background-color: white; /* Fondo blanco para el botón */
+    border: 1px solid red; /* Borde rojo */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+nav .logout-button a {
+    color: red; /* Color del texto rojo */
+    padding: 5px 10px; /* Espaciado interno */
+}
+
+nav .logout-button a:hover {
+    background-color: red; /* Cambia el fondo a rojo al pasar el mouse */
+    color: white; /* Cambia el texto a blanco al pasar el mouse */
+    border: 1px solid rgb(255, 255, 255); /* Borde blanco */
+    border-radius: 5px; /* Bordes redondeados */
 }
