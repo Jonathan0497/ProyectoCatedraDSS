@@ -66,13 +66,14 @@ if (isset($_GET['action'])) {
             }
             break;
         case 'delete':
-            if (!$jugadorTorneo->setId($_POST['id'])) {
-                $result['exception'] = 'Identificador incorrecto';
-            } elseif (!$jugadorTorneo->readOne()) {
-                $result['exception'] = 'Identificador inexistente';
+            $_POST = $jugadorTorneo->validateForm($_POST);
+            if (!$jugadorTorneo->setIdJugador($_POST['idJugador'])) {
+                $result['exception'] = 'Identificador del jugador incorrecto';
+            } elseif (!$jugadorTorneo->setIdTorneo($_POST['idTorneo'])) {
+                $result['exception'] = 'Identificador del torneo incorrecto';
             } elseif ($jugadorTorneo->deleteRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Inscripcion eliminada correctamente';
+                $result['message'] = 'Jugador Desinscrito del torneo correctamente';
             } else {
                 $result['exception'] = Database::getException();
             }

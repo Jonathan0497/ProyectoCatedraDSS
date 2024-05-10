@@ -96,8 +96,8 @@ class JugadorTorneo extends Validator
     public function deleteRow()
     {
         $sql = 'DELETE FROM jugador_torneo
-                WHERE id_jugadorTorneo = ?';
-        $params = array($this->idJugadorTorneo);
+                WHERE id_jugador = ? and id_torneo = ?';
+        $params = array($this->idJugadorTorneo, $this->idTorneo);
         return Database::executeRow($sql, $params);
     }
 
