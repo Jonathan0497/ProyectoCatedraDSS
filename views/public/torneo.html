@@ -19,7 +19,7 @@
         <nav>
             <a class="titulo" href="index.html">Ping Pong<i class="fa-solid fa-table-tennis espacio"></i></a>
             <ul>
-                <li><a href="torneos.html">Torneos</a></li>
+                <li><a href="torneo.html">Torneos</a></li>
                 <li><a href="jugadores.html">Jugadores</a></li>
                 <li><a href="#">Noticias</a></li>
                 <li><a href="#">Reglas</a></li>
@@ -29,49 +29,82 @@
     </header>
 
     <div class="container mt-4">
-        <h1>Agregar Nuevo Torneo</h1>
+        <h1 class="mb-4">Agregar Nuevo Torneo</h1>
         <form id="save-form" method="post" enctype="multipart/form-data">
             <input type="hidden" id="id" name="id">
-            <div class="mb-3">
-                <label for="nombre_torneo" class="form-label">Nombre del Torneo</label>
-                <input type="text" class="form-control" id="nombre_torneo" name="nombre_torneo" required>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="nombre_torneo" class="form-label">Nombre del Torneo</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nombre_torneo" name="nombre_torneo" required>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="idNivelHabilidad" class="form-label">Nivel de Habilidad</label>
-                <select class="form-select" id="idNivelHabilidad" name="idNivelHabilidad" required>
-                    <!-- Estos campos se cargarán desde la BD -->
-                </select>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="idNivelHabilidad" class="form-label">Nivel de Habilidad</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-select" id="idNivelHabilidad" name="idNivelHabilidad" required>
+                        <!-- Estos campos se cargarán desde la BD -->
+                    </select>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
-                <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="idTipoTorneo" class="form-label">Tipo de Torneo</label>
-                <select class="form-select" id="idTipoTorneo" name="idTipoTorneo" required>
-                    <!-- Estos campos se cargarán desde la BD -->
-                </select>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="idTipoTorneo" class="form-label">Tipo de Torneo</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-select" id="idTipoTorneo" name="idTipoTorneo" required>
+                        <!-- Estos campos se cargarán desde la BD -->
+                    </select>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="idEstadoTorneo" class="form-label">Estado del Torneo</label>
-                <select class="form-select" id="idEstadoTorneo" name="idEstadoTorneo" required>
-                    <!-- Estos campos se cargarán desde la BD -->
-                </select>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="idEstadoTorneo" class="form-label">Estado del Torneo</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-select" id="idEstadoTorneo" name="idEstadoTorneo" required>
+                        <!-- Estos campos se cargarán desde la BD -->
+                    </select>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="idFormatoPartido" class="form-label">Formato Partido</label>
-                <select class="form-select" id="idFormatoPartido" name="idFormatoPartido" required>
-                    <!-- Estos campos se cargarán desde la BD -->
-                </select>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="idFormatoPartido" class="form-label">Formato Partido</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-select" id="idFormatoPartido" name="idFormatoPartido" required>
+                        <!-- Estos campos se cargarán desde la BD -->
+                    </select>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="direccion" class="form-label">Dirección</label>
-                <input type="text" class="form-control" id="direccion" name="direccion" required>
+            <div class="row mb-3">
+                <div class="col-sm-4">
+                    <label for="direccion" class="form-label">Dirección</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="direccion" name="direccion" required>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <div class="row mb-3 justify-content-center">
+                <div class="col-sm-6 text-center">
+                    <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                </div>
+            </div>
         </form>
-
+    
         <hr>
+    
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -91,6 +124,7 @@
             </tbody>
         </table>
     </div>
+    
 
     <!-- Modal -->
     <div class="modal fade" id="optionsModal" tabindex="-1" role="dialog" aria-labelledby="optionsModalLabel"
