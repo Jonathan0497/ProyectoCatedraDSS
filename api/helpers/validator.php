@@ -216,16 +216,12 @@ class Validator
     *   
     *   Retorno: booleano (true si el valor es correcto o false en caso contrario).
     */
-    function validateDateTime($value)
+    public function validateDateTime($value)
 {
-    // La expresión regular verifica el formato YYYY-MM-DD HH:MM:SS
-    // Año: 4 dígitos, Mes: 01-12, Día: 01-31, Hora: 00-23, Minutos: 00-59, Segundos: 00-59
-    if (preg_match('/^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) (2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])$/', $value)) {
-        return true;
-    } else {
-        return false;
-    }
+    $d = DateTime::createFromFormat('Y-m-d H:i:s', $value);
+    return $d && $d->format('Y-m-d H:i:s') === $value;
 }
+
 
 
     /*

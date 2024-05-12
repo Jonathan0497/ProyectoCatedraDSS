@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Pong - Jugadores</title>
+    <link href="../../resources/css/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="../../controllers/public/serie.js"></script>
+<body>
+    <header>
+        <nav>
+            <a class="titulo" href="index.html">Ping Pong<i class="fa-solid fa-table-tennis espacio"></i></a>
+            <ul>
+                <li><a href="jugadores.html">Jugadores</a></li>
+                <li><a href="torneo.html">Torneos</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Reglas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container mt-4">
+        <h1>Agregar Nueva Serie</h1>
+        <form id="save-form" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="id" name="id">
+            <div class="mb-3">
+                <label for="idTorneo" class="form-label">Torneo</label>
+                <select class="form-select" id="idTorneo" name="idTorneo" required>
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="idJugador1" class="form-label">Jugador 1</label>
+                <select class="form-select" id="idJugador1" name="idJugador1" required>
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="idJugador2" class="form-label">Jugador 2</label>
+                <select class="form-select" id="idJugador2" name="idJugador2" required>
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="fechaHora" class="form-label">Fecha de Inicio</label>
+                <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" required>
+            </div>
+            <div class="mb-3">
+                <label for="ganadorSerie" class="form-label">Ganador</label>
+                <select class="form-select" id="ganadorSerie" name="ganadorSerie">
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="estadoSerie" class="form-label">estado de Serie</label>
+                <select class="form-select" id="estadoSerie" name="estadoSerie" required>
+                    <!-- Estos campos se cargarán desde la BD -->
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+        <hr>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Torneo</th>
+                    <th>fechaHora</th>
+                    <th>jugador1</th>
+                    <th>jugador2</th>
+                    <th>ganadorSerie</th>
+                    <th>Estado Serie</th>
+                    <th>Etapa de torneo</th>          
+                    <th>Acciones</th>   
+                </tr>
+            </thead>
+            <tbody id="tabla-serie">
+                <!-- Aquí se agregarán dinámicamente los jugadores -->
+            </tbody>
+        </table>
+    </div>
+    
+    <footer>
+        <a href="#" target="_blank"><i class="fa-brands fa-trello"></i> Trello</a>
+        <a href="#" target="_blank"><i class="fa-brands fa-github"></i> Github</a>
+        <a href="#">Contáctanos</a>
+        <h2>Derechos reservados © 2023 Ping Pong</h2>
+    </footer>
+</body>
+</html>

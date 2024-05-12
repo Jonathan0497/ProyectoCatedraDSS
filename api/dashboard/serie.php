@@ -12,11 +12,21 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+
     $result['session'] = 1;
     // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
     switch ($_GET['action']) {
         case 'readAll':
             if ($result['dataset'] = $serie->readAll()) {
+                $result['status'] = 1;
+            } elseif (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay datos registrados';
+            }
+            break;
+        case 'readAllEstadoSerie':
+            if ($result['dataset'] = $serie->readEstadoSerie()) {
                 $result['status'] = 1;
             } elseif (Database::getException()) {
                 $result['exception'] = Database::getException();
@@ -49,7 +59,8 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Identificador del jugador 2 incorrecto';
             } elseif (!$serie->setFechaHora($_POST['fechaHora'])) {
                 $result['exception'] = 'Fecha y hora incorrectas';
-            } elseif (!$serie->setGanadorSerie($_POST['ganadorSerie'])) {
+            // Aseguramos que setGanadorSerie sea llamado sólo si ganadorSerie está definido y no es nulo.
+            } elseif (isset($_POST['ganadorSerie']) && $_POST['ganadorSerie'] !== '' && !$serie->setGanadorSerie($_POST['ganadorSerie'])) {
                 $result['exception'] = 'Ganador de la serie incorrecto';
             } elseif (!$serie->setIdEstadoSerie($_POST['estadoSerie'])) {
                 $result['exception'] = 'Estado de la serie incorrecto';
@@ -59,6 +70,7 @@ if (isset($_GET['action'])) {
             } else {
                 $result['exception'] = Database::getException();
             }
+            
             break;
         case 'readOne':
             if (!$serie->setId($_POST['id'])) {

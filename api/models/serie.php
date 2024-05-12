@@ -59,23 +59,25 @@ class Serie extends Validator
 
     public function setFechaHora($value)
     {
-        if ($this->validateDateTime($value)) {
+        
             $this->fechaHora = $value;
             return true;
-        } else {
-            return false;
-        }
+       
     }
 
     public function setGanadorSerie($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($value === null) {
+            $this->ganadorSerie = null;
+            return true;
+        } elseif ($this->validateNaturalNumber($value)) {
             $this->ganadorSerie = $value;
             return true;
         } else {
             return false;
         }
     }
+
 
     public function setIdEstadoSerie($value)
     {
@@ -146,10 +148,45 @@ class Serie extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    public function readEstadoSerie() {
+        $sql = 'SELECT id_estadoSerie, estadoserie
+                FROM estadoserie';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     public function readAll()
     {
-        $sql = 'SELECT id_serie, id_torneo, id_jugador1, id_jugador2, fechaHora, ganadorSerie, id_estadoSerie
-            FROM serie';
+        $sql = 'SELECT
+            serie.id_serie,
+            serie.fechaHora,
+            serie.ganadorSerie,
+            serie.id_estadoSerie,
+            g.nombre_jugador AS ganador,
+            serie.id_torneo,
+            t.nombre_torneo AS nombre_torneo,
+            es.estadoSerie AS estado_serie,
+            serie.etapaTorneo,
+            j1.id_jugador AS id_jugador1,
+            j1.nombre_jugador AS jugador1,
+            j1.edad AS edad_jugador1,
+            j1.correo AS correo_jugador1,
+            j2.id_jugador AS id_jugador2,
+            j2.nombre_jugador AS jugador2,
+            j2.edad AS edad_jugador2,
+            j2.correo AS correo_jugador2
+        FROM
+            serie
+        INNER JOIN
+            jugador AS j1 ON serie.id_jugador1 = j1.id_jugador
+        INNER JOIN
+            jugador AS j2 ON serie.id_jugador2 = j2.id_jugador
+        INNER JOIN
+            jugador AS g ON serie.ganadorSerie = g.id_jugador
+        INNER JOIN
+            estadoserie AS es ON serie.id_estadoSerie = es.id_estadoSerie
+        INNER JOIN
+            torneo AS t ON serie.id_torneo = t.id_torneo;';
         $params = null;
         return Database::getRows($sql, $params);
     }
