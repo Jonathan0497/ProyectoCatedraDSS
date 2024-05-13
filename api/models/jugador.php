@@ -154,6 +154,7 @@ class Jugador extends Validator
         return Database::getRows($sql, $params);
     }
 
+
     public function readAllNivelHabilidad()
     {
         $sql = 'SELECT id_nivelHabilidad, nivelHabilidad FROM nivelhabilidad';

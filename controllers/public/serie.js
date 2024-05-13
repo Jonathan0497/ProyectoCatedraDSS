@@ -2,9 +2,9 @@ const SERVER = 'http://localhost/ProyectoCatedraDSS/api/';
 const API_JUGADORES = SERVER + 'dashboard/jugador.php?action=';
 const API_TORNEO = SERVER + 'dashboard/torneos.php?action=';
 const API_SERIE = SERVER + 'dashboard/serie.php?action=';
+const API_TORNEOJUGADOR = SERVER + 'dashboard/jugador-torneo.php?action=';
 
 document.addEventListener('DOMContentLoaded', function() {
-    listarJugadores();
     listarTorneo();
     listarEstado();
     listarSerie();
@@ -77,7 +77,7 @@ function eliminarSerie(serieId) {
                         icon: 'success',
                         confirmButtonText: 'OK'
                     });
-                    listarJugadores(); // Actualizar la lista de jugadores
+                    listarSerie(); // Actualizar la lista de jugadores
                 } else {
                     throw new Error('Error al eliminar el jugador: ' + data.exception);
                 }
@@ -203,7 +203,7 @@ function actualizarSerie(serieId) {
                     confirmButtonText: 'OK'
                 });
                 document.getElementById('save-form').reset(); // Limpiar el formulario
-                listarJugadores(); // Actualizar la lista de jugadores
+                listarSerie(); // Actualizar la lista de jugadores
             } else {
                 throw new Error(result.exception); // Manejar errores específicos de la API
             }
@@ -218,7 +218,7 @@ function actualizarSerie(serieId) {
         });
 }
 
-function listarJugadores() {
+function listarJugadores(idTorneo) {
     fetch(API_JUGADORES + 'readAll', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json;charset=UTF-8' }
@@ -249,7 +249,17 @@ function listarTorneo() {
         data.dataset.forEach(torneo => {
             opciones += `<option value="${torneo.id_torneo}">${torneo.nombre_torneo}</option>`;
         });
-        document.getElementById('idTorneo').innerHTML = opciones;
+
+        const torneo = document.getElementById('idTorneo')
+       
+        torneo.innerHTML = opciones;
+        // Agregar un event listener para el evento 'change'
+        torneo.addEventListener('change', function() {
+            // Obtener el valor seleccionado
+            const selectedValue = this.value;
+            // Llamar a la función listarJugadores con el valor seleccionado
+            listarJugadores(selectedValue);
+        });
     })
     .catch(error => {
         console.error('Error al cargar los torneos:', error);

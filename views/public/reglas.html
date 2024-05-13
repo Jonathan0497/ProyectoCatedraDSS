@@ -12,6 +12,20 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<style>
+    .ping-pong-container {
+      padding-top: 50px;
+    }
+    .ping-pong-rule-card {
+      margin-bottom: 20px;
+    }
+    .ping-pong-rule-image {
+      width: 150px; 
+      height: 150px;
+      object-fit: cover; 
+    }
+  </style>
+
 <body>
     <header>
         <nav>
@@ -20,7 +34,6 @@
                 <li><a href="jugadores.html">Jugadores</a></li>
                 <li><a href="torneo.html">Torneos</a></li>
                 <li><a href="serie.html">Series</a></li>
-                <li><a href="noticias.html">Noticias</a></li>
                 <li><a href="reglas.html">Reglas</a></li>
                 <li class="logout-button" id="logoutButton"><a href="#"><i class="fa-solid fa-right-from-bracket"></i>
                         Logout</a></li>
@@ -28,6 +41,75 @@
         </nav>
     </header>
     <br>
+    <div class="ping-pong-container container">
+        <h1 class="text-center">Reglas del Ping Pong</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card ping-pong-rule-card">
+                    <div class="card-body card-horizontal">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQScW5lMfuuyDlKtpV9jvK6YhJSDZq3mQoZEfPt_Dq9w&s"
+                                    class="ping-pong-rule-image" alt="Imagen de la regla 1">
+                            </div>
+                            <div class="col-md-9">
+                                <h5 class="card-title">Objetivo del Juego</h5>
+                                <p class="card-text">El objetivo del juego es anotar puntos haciendo que la pelota toque
+                                    el lado de la mesa del oponente sin que este pueda devolverla correctamente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card ping-pong-rule-card">
+                    <div class="card-body card-horizontal">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="https://ichef.bbci.co.uk/ace/ws/640/amz/worldservice/live/assets/images/2015/04/02/150402165113_ping_624x351_thinkstock_nocredit.jpg"
+                                    class="ping-pong-rule-image" alt="Imagen de la regla 2">
+                            </div>
+                            <div class="col-md-9">
+                                <h5 class="card-title">Servicio</h5>
+                                <p class="card-text">El servicio comienza con un jugador golpeando la pelota desde
+                                    detrás de su línea de fondo hacia el campo del oponente. Debe pasar por encima de la
+                                    red y tocar el campo del o durante el juego, generalmente se considera en juego, a
+                                    menos que se acuerde lo contrario antes del partido.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card ping-pong-rule-card">
+                    <div class="card-body card-horizontal">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="https://i.ytimg.com/vi/fR6AWymfGXM/maxresdefault.jpg"
+                                    class="ping-pong-rule-image" alt="Imagen de la regla 9">
+                            </div>
+                            <div class="col-md-9">
+                                <h5 class="card-title">Faltas y Penalizaciones</h5>
+                                <p class="card-text">Hay varias faltas y penalizaciones en el ping pong, como golpear la
+                                    pelota dos veces seguidas, golpear la pelota antes de que cruce la red, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card ping-pong-rule-card">
+                    <div class="card-body card-horizontal">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="https://okdiario.com/img/2019/12/10/donde-se-invento-el-ping-pong.jpg"
+                                    class="ping-pong-rule-image" alt="Imagen de la regla 10">
+                            </div>
+                            <div class="col-md-9">
+                                <h5 class="card-title">Fair Play</h5>
+                                <p class="card-text">El fair play es fundamental en el ping pong. Los jugadores deben
+                                    respetar las reglas y mostrar deportividad hacia su oponente en todo momento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
     <footer>
         <a href="#" target="_blank"><i class="fa-brands fa-trello"></i> Trello</a>

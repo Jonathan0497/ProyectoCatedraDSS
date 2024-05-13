@@ -13,7 +13,8 @@ header {
 }
 
 nav {
-    width: 100%; /* Asegúrate de que el nav ocupa todo el ancho del header */
+    width: 100%;
+    /* Asegúrate de que el nav ocupa todo el ancho del header */
 }
 
 nav h1 {
@@ -26,8 +27,10 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    align-items: center; /* Alinea los elementos del menú verticalmente */
-    width: 100%; /* Ocupa todo el ancho disponible */
+    align-items: center;
+    /* Alinea los elementos del menú verticalmente */
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
 }
 
 nav li {
@@ -40,25 +43,25 @@ nav a {
 }
 
 nav ul li a {
-    position: relative; 
+    position: relative;
 }
 
 nav ul li a::after {
     content: "";
     position: absolute;
-    bottom: -5px; 
+    bottom: -5px;
     left: 0;
     width: 100%;
     height: 3px;
     background-color: white;
-    transform: scaleX(0); 
-    transform-origin: left; 
+    transform: scaleX(0);
+    transform-origin: left;
     transition: transform 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: transparent; 
-    color: #ffffff; 
+    background-color: transparent;
+    color: #ffffff;
 }
 
 nav a:hover {
@@ -68,7 +71,7 @@ nav a:hover {
 
 
 nav ul li a:hover::after {
-    transform: scaleX(1); 
+    transform: scaleX(1);
 }
 
 
@@ -76,7 +79,7 @@ nav ul li a:hover::after {
     background-image: url("../../resources/img/pingpong.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,36 +98,36 @@ nav ul li a:hover::after {
 }
 
 button {
-    background-color: #f44336; 
+    background-color: #f44336;
     color: white;
     padding: 1em 2em;
     border: none;
     border-radius: 5px;
     font-size: 1em;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 26px 0; 
-    font-size: 1.2em; 
+    padding: 26px 0;
+    font-size: 1.2em;
 }
 
 footer a {
     color: white;
     text-decoration: none;
-    margin: 0 1em; 
+    margin: 0 1em;
 }
 
 .card-img-custom {
-    height: 300px; 
-    object-fit: cover; 
+    height: 300px;
+    object-fit: cover;
 }
 
 p {
-    margin: 0; 
+    margin: 0;
     text-align: justify;
     padding: 1em 0;
 }
@@ -133,12 +136,12 @@ p {
     text-align: center;
 }
 
-.fa-brands { 
-    margin-right: 0.5em; 
+.fa-brands {
+    margin-right: 0.5em;
 }
 
 .espacio {
-    margin-left: 0.5em; 
+    margin-left: 0.5em;
 }
 
 .titulo {
@@ -146,6 +149,22 @@ p {
     padding: 0 20px;
     font-size: 3rem;
 }
+
 nav li.logout-button {
-    margin-left: 65%; 
+    margin-left: 65%;
+}
+
+.ping-pong-container {
+    padding-top: 50px;
+}
+
+.ping-pong-rule-card {
+    margin-bottom: 20px;
+}
+
+.ping-pong-rule-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+   
 }

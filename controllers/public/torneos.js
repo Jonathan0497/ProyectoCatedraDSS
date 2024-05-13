@@ -7,6 +7,7 @@ const ENDPOINT_TIPO = SERVER + 'dashboard/torneos.php?action=readTipoTorneo';
 const API_JUGADORES = SERVER + 'dashboard/jugador.php?action=';
 const API_CREAR_JUGADORES = SERVER + 'dashboard/jugador-torneo.php?action=';
 
+
 document.addEventListener('DOMContentLoaded', function () {
     listarNivelHabilidad();
     listarEstadoTorneo();
@@ -312,7 +313,7 @@ function loadOptions(idTorneo) {
                 checkbox.id = `option-${jugador.id_jugador}`;
                 checkbox.value = jugador.id_jugador;
                 checkbox.className = 'form-check-input';
-
+                
                 const label = document.createElement('label');
                 label.htmlFor = `option-${jugador.id_jugador}`;
                 label.className = 'form-check-label';
@@ -343,6 +344,8 @@ function loadOptions(idTorneo) {
         alert('No se pudo cargar las opciones de jugadores: ' + error.message);
     });
 }
+
+
 
 function inscribirJugador(idJugador, idTorneo) {
     // Crear un objeto FormData

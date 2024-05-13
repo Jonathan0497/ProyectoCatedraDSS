@@ -30,6 +30,8 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Identificador del jugador incorrecto';
             } elseif (!$jugadorTorneo->setIdTorneo($_POST['idTorneo'])) {
                 $result['exception'] = 'Identificador del torneo incorrecto';
+            } elseif ($jugadorTorneo->readOneId()) {
+                $result['exception'] = 'Jugador ya inscrito';
             } elseif ($jugadorTorneo->createRow()) {
                 $result['status'] = 1;
                 $result['message'] = 'Inscripcion al torneo realizada correctamente';
@@ -63,6 +65,17 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Inscripcion modificada correctamente';
             } else {
                 $result['exception'] = Database::getException();
+            }
+            break;
+        case 'readAllJugadores':
+            if (!$jugadorTorneo->setIdTorneo($_POST['idTorneo'])) {
+                $result['exception'] = 'Identificador de torneo incorrecto';
+            } else if ($result['dataset'] = $jugadorTorneo->readAllJugadores()) {
+                $result['status'] = 1;
+            } else if (Database::getException()) {
+                $result['exception'] = Database::getException();
+            } else {
+                $result['exception'] = 'No hay jugadores asociados a este torneo';
             }
             break;
         case 'delete':

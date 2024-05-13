@@ -80,7 +80,7 @@ function eliminarJugador(jugadorId) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    listarJugadores();
+    // listarJugadores();
     listarHabilidades();
     listarGeneros();
 

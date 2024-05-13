@@ -75,12 +75,46 @@ class JugadorTorneo extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function readAllJugadores()
+    {
+        $sql = 'SELECT 
+        jugador.id_jugador, 
+        jugador.nombre_jugador, 
+        jugador.edad, 
+        jugador.telefono, 
+        jugador.correo, 
+        nivelhabilidad.nivelHabilidad, 
+        genero.genero
+    FROM 
+        jugador
+    INNER JOIN 
+        nivelhabilidad ON jugador.id_nivelHabilidad = nivelhabilidad.id_nivelHabilidad
+    INNER JOIN 
+        genero ON jugador.id_genero = genero.id_genero
+    INNER JOIN 
+        jugador_torneo ON jugador.id_jugador = jugador_torneo.id_jugador
+    WHERE 
+        jugador_torneo.id_torneo = ?';  
+        $params = array($this->idTorneo);
+
+        return Database::getRows($sql, $params);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT id_jugadorTorneo, id_jugador, id_torneo
                 FROM jugador_torneo
                 WHERE id_jugadorTorneo = ?';
         $params = array($this->idJugadorTorneo);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readOneId()
+    {
+        $sql = 'SELECT id_jugadorTorneo, id_jugador, id_torneo
+                FROM jugador_torneo
+                WHERE id_jugador = ? and id_torneo = ?';
+        $params = array($this->idJugador, $this->idTorneo);
         return Database::getRow($sql, $params);
     }
 
