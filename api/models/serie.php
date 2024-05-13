@@ -142,9 +142,9 @@ class Serie extends Validator
 
     public function createRow()
     {
-        $sql = 'INSERT INTO serie(id_torneo, id_jugador1, id_jugador2, fechaHora, ganadorSerie, id_estadoSerie)
-            VALUES(?, ?, ?, ?, ?, ?)';
-        $params = array($this->idTorneo, $this->idJugador1, $this->idJugador2, $this->fechaHora, $this->ganadorSerie, $this->idestadoSerie);
+        $sql = 'INSERT INTO serie(id_torneo, id_jugador1, id_jugador2, fechaHora, id_estadoSerie)
+            VALUES(?, ?, ?, ?, ?)';
+        $params = array($this->idTorneo, $this->idJugador1, $this->idJugador2, $this->fechaHora, $this->idestadoSerie);
         return Database::executeRow($sql, $params);
     }
 
@@ -158,35 +158,34 @@ class Serie extends Validator
     public function readAll()
     {
         $sql = 'SELECT
-            serie.id_serie,
-            serie.fechaHora,
-            serie.ganadorSerie,
-            serie.id_estadoSerie,
-            g.nombre_jugador AS ganador,
-            serie.id_torneo,
-            t.nombre_torneo AS nombre_torneo,
-            es.estadoSerie AS estado_serie,
-            serie.etapaTorneo,
-            j1.id_jugador AS id_jugador1,
-            j1.nombre_jugador AS jugador1,
-            j1.edad AS edad_jugador1,
-            j1.correo AS correo_jugador1,
-            j2.id_jugador AS id_jugador2,
-            j2.nombre_jugador AS jugador2,
-            j2.edad AS edad_jugador2,
-            j2.correo AS correo_jugador2
-        FROM
-            serie
-        INNER JOIN
-            jugador AS j1 ON serie.id_jugador1 = j1.id_jugador
-        INNER JOIN
-            jugador AS j2 ON serie.id_jugador2 = j2.id_jugador
-        INNER JOIN
-            jugador AS g ON serie.ganadorSerie = g.id_jugador
-        INNER JOIN
-            estadoserie AS es ON serie.id_estadoSerie = es.id_estadoSerie
-        INNER JOIN
-            torneo AS t ON serie.id_torneo = t.id_torneo;';
+        serie.id_serie,
+        serie.fechaHora,
+        serie.ganadorSerie,
+        serie.id_estadoSerie,
+        g.nombre_jugador AS ganador,
+        serie.id_torneo,
+        t.nombre_torneo AS nombre_torneo,
+        es.estadoSerie AS estado_serie,
+        j1.id_jugador AS id_jugador1,
+        j1.nombre_jugador AS jugador1,
+        j1.edad AS edad_jugador1,
+        j1.correo AS correo_jugador1,
+        j2.id_jugador AS id_jugador2,
+        j2.nombre_jugador AS jugador2,
+        j2.edad AS edad_jugador2,
+        j2.correo AS correo_jugador2
+    FROM
+        serie
+    INNER JOIN
+        jugador AS j1 ON serie.id_jugador1 = j1.id_jugador
+    INNER JOIN
+        jugador AS j2 ON serie.id_jugador2 = j2.id_jugador
+    LEFT JOIN
+        jugador AS g ON serie.ganadorSerie = g.id_jugador
+    INNER JOIN
+        estadoserie AS es ON serie.id_estadoSerie = es.id_estadoSerie
+    INNER JOIN
+        torneo AS t ON serie.id_torneo = t.id_torneo;';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -203,9 +202,9 @@ class Serie extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE serie
-            SET id_torneo = ?, id_jugador1 = ?, id_jugador2 = ?, fechaHora = ?, ganadorSerie = ?, id_estadoSerie = ?
+            SET id_torneo = ?, id_jugador1 = ?, id_jugador2 = ?, fechaHora = ?, id_estadoSerie = ?
             WHERE id_serie = ?';
-        $params = array($this->idTorneo, $this->idJugador1, $this->idJugador2, $this->fechaHora, $this->ganadorSerie, $this->idestadoSerie, $this->id);
+        $params = array($this->idTorneo, $this->idJugador1, $this->idJugador2, $this->fechaHora, $this->idestadoSerie, $this->id);
         return Database::executeRow($sql, $params);
     }
 

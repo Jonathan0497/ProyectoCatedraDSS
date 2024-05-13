@@ -60,8 +60,6 @@ if (isset($_GET['action'])) {
             } elseif (!$serie->setFechaHora($_POST['fechaHora'])) {
                 $result['exception'] = 'Fecha y hora incorrectas';
             // Aseguramos que setGanadorSerie sea llamado sólo si ganadorSerie está definido y no es nulo.
-            } elseif (isset($_POST['ganadorSerie']) && $_POST['ganadorSerie'] !== '' && !$serie->setGanadorSerie($_POST['ganadorSerie'])) {
-                $result['exception'] = 'Ganador de la serie incorrecto';
             } elseif (!$serie->setIdEstadoSerie($_POST['estadoSerie'])) {
                 $result['exception'] = 'Estado de la serie incorrecto';
             } elseif ($serie->createRow()) {
@@ -97,13 +95,11 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Identificador del jugador 2 incorrecto';
             } elseif (!$serie->setFechaHora($_POST['fechaHora'])) {
                 $result['exception'] = 'Fecha y hora incorrectas';
-            } elseif (!$serie->setGanadorSerie($_POST['ganadorSerie'])) {
-                $result['exception'] = 'Ganador de la serie incorrecto';
             } elseif (!$serie->setIdEstadoSerie($_POST['estadoSerie'])) {
                 $result['exception'] = 'Estado de la serie incorrecto';
             } elseif ($serie->updateRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Torneo modificado correctamente';
+                $result['message'] = 'Serie modificado correctamente';
             } else {
                 $result['exception'] = Database::getException();
             }
@@ -115,7 +111,7 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Torneo inexistente';
             } elseif ($serie->deleteRow()) {
                 $result['status'] = 1;
-                $result['message'] = 'Torneo eliminado correctamente';
+                $result['message'] = 'Serie eliminado correctamente';
             } else {
                 $result['exception'] = Database::getException();
             }
