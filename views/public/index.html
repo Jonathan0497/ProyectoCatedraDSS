@@ -1,180 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ping Pong - Torneos</title>
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link href="../../resources/css/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 1em 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav {
-    width: 100%; /* Asegúrate de que el nav ocupa todo el ancho del header */
-}
-
-nav h1 {
-    margin: 10px;
-    padding: 0 20px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center; /* Alinea los elementos del menú verticalmente */
-    width: 100%; /* Ocupa todo el ancho disponible */
-}
-
-nav li {
-    margin-left: 2em;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-}
-
-nav ul li a {
-    position: relative; 
-}
-
-nav ul li a::after {
-    content: "";
-    position: absolute;
-    bottom: -5px; 
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    transform: scaleX(0); 
-    transform-origin: left; 
-    transition: transform 0.3s ease;
-}
-
-nav ul li a:hover {
-    background-color: transparent; 
-    color: #ffffff; 
-}
-
-nav a:hover {
-    background-color: transparent;
-    color: #ffffff;
-}
-
-
-nav ul li a:hover::after {
-    transform: scaleX(1); 
-}
-
-
-.banner {
-    background-image: url("../../resources/img/pingpong.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 100vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.contenido {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 2em;
-    border-radius: 10px;
-}
-
-.contenido h2 {
-    margin-top: 0;
-}
-
-button {
-    background-color: #f44336; 
-    color: white;
-    padding: 1em 2em;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer; 
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 26px 0; 
-    font-size: 1.2em; 
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1em; 
-}
-
-.card-img-custom {
-    height: 300px; 
-    object-fit: cover; 
-}
-
-p {
-    margin: 0; 
-    text-align: justify;
-    padding: 1em 0;
-}
-
-.centrar {
-    text-align: center;
-}
-
-.fa-brands { 
-    margin-right: 0.5em; 
-}
-
-.espacio {
-    margin-left: 0.5em; 
-}
-
-.titulo {
-    margin: 10px;
-    padding: 0 20px;
-    font-size: 3rem;
-}
-nav li.logout-button {
-    margin-left: 60%; /* Empuja el botón de logout a la derecha */
-    background-color: white; /* Fondo blanco para el botón */
-    border: 1px solid red; /* Borde rojo */
-    border-radius: 5px; /* Bordes redondeados */
-}
-
-nav .logout-button a {
-    color: red; /* Color del texto rojo */
-    padding: 5px 10px; /* Espaciado interno */
-}
-
-nav .logout-button a:hover {
-    background-color: red; /* Cambia el fondo a rojo al pasar el mouse */
-    color: white; /* Cambia el texto a blanco al pasar el mouse */
-    border: 1px solid rgb(255, 255, 255); /* Borde blanco */
-    border-radius: 5px; /* Bordes redondeados */
-}
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -184,10 +20,11 @@ nav .logout-button a:hover {
             <ul>
                 <li><a href="jugadores.html">Jugadores</a></li>
                 <li><a href="torneo.html">Torneos</a></li>
-                <li><a href="#">Noticias</a></li>
-                <li><a href="#">Reglas</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li class="logout-button"><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li><a href="serie.html">Series</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="reglas.html">Reglas</a></li>
+                <li class="logout-button" id="logoutButton"><a href="#"><i class="fa-solid fa-right-from-bracket"></i>
+                        Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -197,8 +34,8 @@ nav .logout-button a:hover {
             <h2>Bienvenido al Mundo del Ping Pong</h2>
             <p class="centrar">Encuentra información sobre torneos, noticias y mucho más.</p>
             <a href="https://as.com/noticias/tenis-mesa/">
-            <button>¡Comienza ahora!</button>
-        </a>
+                <button>¡Comienza ahora!</button>
+            </a>
         </div>
     </section>
 
@@ -209,7 +46,8 @@ nav .logout-button a:hover {
         <div class="row d-flex align-items-stretch">
             <div class="col-md-2 offset-md-1">
                 <div class="card" style="width: 100%; height: 100%;">
-                    <img src="../../resources/img/jugadores/MaLong.jpg" class="card-img-top card-img-custom" alt="Ma Long">
+                    <img src="../../resources/img/jugadores/MaLong.jpg" class="card-img-top card-img-custom"
+                        alt="Ma Long">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">Ma Long</h5>
                         <p class="card-text flex-grow-1 justified-text">
@@ -224,7 +62,8 @@ nav .logout-button a:hover {
             </div>
             <div class="col-md-2">
                 <div class="card" style="width: 100%; height: 100%;">
-                    <img src="../../resources/img/jugadores/Jan-Ove Waldner.jpg" class="card-img-top card-img-custom" alt="Jan-Ove Waldner">
+                    <img src="../../resources/img/jugadores/Jan-Ove Waldner.jpg" class="card-img-top card-img-custom"
+                        alt="Jan-Ove Waldner">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">Jan-Ove Waldner</h5>
                         <p class="card-text flex-grow-1 justified-text">
@@ -240,7 +79,8 @@ nav .logout-button a:hover {
             </div>
             <div class="col-md-2">
                 <div class="card" style="width: 100%; height: 100%;">
-                    <img src="../../resources/img/jugadores/HugoCalderano.jpg" class="card-img-top card-img-custom" alt="Hugo Calderano">
+                    <img src="../../resources/img/jugadores/HugoCalderano.jpg" class="card-img-top card-img-custom"
+                        alt="Hugo Calderano">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">Hugo Calderano</h5>
                         <p class="card-text flex-grow-1 justified-text">
@@ -256,7 +96,8 @@ nav .logout-button a:hover {
             </div>
             <div class="col-md-2">
                 <div class="card" style="width: 100%; height: 100%;">
-                    <img src="../../resources/img/jugadores/Liu Guoliang.jpeg" class="card-img-top card-img-custom" alt="Liu Guoliang">
+                    <img src="../../resources/img/jugadores/Liu Guoliang.jpeg" class="card-img-top card-img-custom"
+                        alt="Liu Guoliang">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">Liu Guoliang</h5>
                         <p class="card-text flex-grow-1 justified-text">
@@ -271,7 +112,8 @@ nav .logout-button a:hover {
             </div>
             <div class="col-md-2">
                 <div class="card" style="width: 100%; height: 100%;">
-                    <img src="../../resources/img/jugadores/Kong Linghui.jpg" class="card-img-top card-img-custom" alt="Kong Linghui">
+                    <img src="../../resources/img/jugadores/Kong Linghui.jpg" class="card-img-top card-img-custom"
+                        alt="Kong Linghui">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">Kong Linghui</h5>
                         <p class="card-text flex-grow-1 justified-text">
@@ -296,7 +138,11 @@ nav .logout-button a:hover {
         <a href="#">Contáctanos</a>
         <h2>Derechos reservados © 2023 Ping Pong</h2>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../controllers/public/logout.js"></script>
 
-    
+
+
 </body>
+
 </html>

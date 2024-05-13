@@ -147,20 +147,5 @@ p {
     font-size: 3rem;
 }
 nav li.logout-button {
-    margin-left: 60%; /* Empuja el botón de logout a la derecha */
-    background-color: white; /* Fondo blanco para el botón */
-    border: 1px solid red; /* Borde rojo */
-    border-radius: 5px; /* Bordes redondeados */
-}
-
-nav .logout-button a {
-    color: red; /* Color del texto rojo */
-    padding: 5px 10px; /* Espaciado interno */
-}
-
-nav .logout-button a:hover {
-    background-color: red; /* Cambia el fondo a rojo al pasar el mouse */
-    color: white; /* Cambia el texto a blanco al pasar el mouse */
-    border: 1px solid rgb(255, 255, 255); /* Borde blanco */
-    border-radius: 5px; /* Bordes redondeados */
+    margin-left: 65%; 
 }
